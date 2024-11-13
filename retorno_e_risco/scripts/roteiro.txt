@@ -1,0 +1,23 @@
+sequência de retorno 
+índice setorial, ação e ibovespa
+
+ retornos diários:
+  - a variação percentual de um dia para outro do preço
+  - índice de fechamento
+ 
+ média e desvio padrão 
+ 
+ Quais o menor e maior desvio padrão? Por quê
+ 
+ gráfico de dispersão entre dp e média
+ 
+ correlação de pearson entre os retornos
+ 
+ qual a maior correlação e por quê?
+ 
+ Calcule os betas (exposição ao risco sistemático) da ação e do índice setorial, usando a fórmula:
+ 
+ qual o maior beta e por quê?
+ 
+ --------------------------------
+ o desvio padrão, que nesse caso pode ser considerado como o risco 
