@@ -29,11 +29,23 @@ setdiff(tris$data, ibov$data)
 base <- left_join(imob, ibov, by = "data", suffix = c("_imob", "_ibov"))
 base <- left_join(base, tris, by = "data", suffix = c("", "_tris")) 
 
-base_var <- base %>% 
-  select(data, var_ibov, var_imob, var_tris) %>% 
+# base para google sheet
+# 
+# base_var <- base %>%
+#   select(data, var_ibov, var_imob, var_tris)  %>%
+#   mutate_all(~ gsub("%", "", .))
+# 
+# write.csv(base_var, file = "data/base_variacoes.csv")
+
+
+# análises ----------------------------------------------------------------
+
+# base para análises no R
+base_var <- base %>%
+  select(data, var_ibov, var_imob, var_tris)  %>%
   mutate_all(~ gsub("%", "", .)) %>% 
-  mutate_all(~ gsub(",", ".", .)) %>% 
-  mutate_all(~ gsub("[A-Za-z]", "", .)) %>% 
+  mutate_all(~ gsub(",", ".", .)) %>%
+  mutate_all(~ gsub("[A-Za-z]", "", .)) %>%
   mutate(across(-data, ~ as.numeric(.)))
 
-write.csv(base_var, file = "data/base_variacoes.csv")
+
