@@ -23,19 +23,17 @@ tris <- tris %>%
   filter(!(data %in% setdiff(tris$data, imob$data))) %>% 
   rename_with(~ paste0(., "_tris"), -data)
 
+setdiff(tris$data, imob$data)
+setdiff(tris$data, ibov$data)
+
 base <- left_join(imob, ibov, by = "data", suffix = c("_imob", "_ibov"))
 base <- left_join(base, tris, by = "data", suffix = c("", "_tris")) 
 
-base <- base %>%
+base_var <- base %>% 
+  select(data, var_ibov, var_imob, var_tris) %>% 
   mutate_all(~ gsub("%", "", .)) %>% 
   mutate_all(~ gsub(",", ".", .)) %>% 
   mutate_all(~ gsub("[A-Za-z]", "", .)) %>% 
   mutate(across(-data, ~ as.numeric(.)))
 
-
-base_var <- 
-  base %>% 
-  select(var_imob, 
-         var_ibov, 
-         var_tris) 
-  
+write.csv(base_var, file = "data/base_variacoes.csv")
